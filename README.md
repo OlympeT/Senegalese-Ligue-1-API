@@ -43,6 +43,9 @@ The easiest way is to use bundler to install the dependencies. To do so, you nee
 run bundler
 
     bundle
+
+setup assets dependencies
+    `yarn install`
     
 setup database
 
