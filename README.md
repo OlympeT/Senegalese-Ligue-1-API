@@ -59,7 +59,7 @@ setup database
     
 add object to database
 
-    `root_url/admin-foot`
+    root_url/admin-foot
     login : otchibozo@gmail.com
     password : passer23
  
