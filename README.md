@@ -63,7 +63,7 @@ add object to database
     login : otchibozo@gmail.com
     password : passer23
  
- # Admin possible action
+ # Admin possible actions
 
  - Create manager  
  - Create a championship
