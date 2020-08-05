@@ -1,0 +1,65 @@
+<% title @team.name %>
+<h1 class="title"><%= @team.name %></h1>
+<p>
+  <%= image_tag (@team.logo.url) %>
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <h2 class="title2">
+      5 derniers matchs
+    </h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+          <th>Date</th>
+          <th>Domicile</th>
+          <th>Score</th>
+          <th>Extérieur</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @played_games.each do |played| %>
+          <tr>
+            <td><%= l(played.date, format: '%d %b %Y') %></td>
+            <td><%= played.home_team.name %></td>
+            <td><%= played.home_score %> - <%= played.away_score %></td>
+            <td><%= played.away_team.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h2 class="title2">
+      5 prochains matchs
+    </h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+          <th>Date</th>
+          <th>Domicile</th>
+          <th>Extérieur</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @notplayed_games.each do |played| %>
+          <tr>
+            <td><%= l(played.date, format: '%d %b %Y') %></td>
+            <td><%= played.home_team.name %></td>
+            <td><%= played.away_team.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- if user_signed_in? %>
+<%= link_to 'Modifier', edit_team_path(@team), :class => 'btn btn-success' %> |
+<% end %>
+<%= link_to 'Retour', :back, :class => 'btn btn-danger' %>

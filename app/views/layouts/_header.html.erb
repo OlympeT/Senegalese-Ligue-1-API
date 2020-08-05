@@ -1,0 +1,44 @@
+<!--- header Menu --->
+<header>
+  <nav class="navbar navbar-light sticky-top navbar-expand-md">
+    <div class="container">
+      <a class="navbar-brand" href="<%= root_path %>">
+        <%= image_tag('logo.png', :width => '40') %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <% if @page == 'calendrier' %>active <% end %>">
+            <a class="nav-link" href="<%= root_path %>">Calendrier & Résultat <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item <% if @page == 'classement' %>active <% end %>">
+            <a class="nav-link" href="<%= classement_path %>">Classement</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+        <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-sliders" aria-hidden="true"></i> Option
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="<%= championships_path %>"><i class="fa fa-trophy" aria-hidden="true"></i> Championnats</a>
+                <a class="dropdown-item" href="<%= teams_path %>"><i class="fa fa-users" aria-hidden="true"></i> Equipes</a>
+                <a class="dropdown-item" href="<%= games_path %>"><i class="fa fa-calendar" aria-hidden="true"></i> Résultats</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="delete"><i class="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+              </div>
+            </li>
+        <% else %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= new_user_session_path %>"><i class="fa fa-user" aria-hidden="true"></i> Connexion</a>
+            </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<!--- //header Menu --->

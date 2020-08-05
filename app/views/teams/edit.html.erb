@@ -1,0 +1,7 @@
+<% title @team.name %>
+<h1 class="title">Edition <%= @team.name %></h1>
+
+<%= render 'form', team: @team %>
+
+<%= link_to 'voir', @team %> |
+<%= link_to 'Retour', teams_path %>

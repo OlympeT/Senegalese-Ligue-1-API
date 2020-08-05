@@ -1,0 +1,28 @@
+<% title "Championnats" %>
+<h1 class="title">Championnats</h1>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Titre</th>
+      <th>Debut</th>
+      <th>Fin</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @championships.each do |championship| %>
+      <tr>
+        <td>Championnat <%= championship.end_saison.year %></td>
+        <td><%= championship.beginning %></td>
+        <td><%= championship.end_saison %></td>
+        <td><%= link_to 'Mettre a jour', edit_championship_path(championship), :class => 'btn btn-sm btn-success' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'Créer un Championnats', new_championship_path, :class => 'btn btn-sm btn-success' %>

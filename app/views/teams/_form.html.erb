@@ -1,0 +1,59 @@
+<%= form_with(model: team, local: true, :html => {class: 'new-item',multiple: true}) do |form| %>
+  <% if team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :logo %>
+    <%= image_tag(@team.logo.thumb_url) if @team.logo? %>
+    <label class="btn btn-block btn-primary">
+      Choisir&hellip;
+    <%= form.file_field :logo ,class: "form-control", style: "display: none;", required: true %>
+    </label>
+    <%= form.hidden_field :logo_cache %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :nom %>
+    <%= form.text_field :name,class: "form-control", required: true %>
+  </div>
+    <%= form.submit 'Valider' ,class: 'btn btn-success btn-block' %>
+<% end %>
+
+<script>
+    $(function() {
+
+        // We can attach the `fileselect` event to all file inputs on the page
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+
+        // We can watch for our custom `fileselect` event like this
+        $(document).ready( function() {
+            $(':file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                    log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                } else {
+                    if( log ) alert(log+' choisie!');
+                }
+
+            });
+        });
+
+    });
+</script>

@@ -1,0 +1,28 @@
+<% title "Equipes" %>
+<h1 class="title">Equipes</h1>
+
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead class="thead-light">
+    <tr>
+      <th>Logo</th>
+      <th>Nom</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= image_tag(team.logo.thumb.url, :class => 'align-middle') %></td>
+        <td class= 'align-middle'><%= team.name %></td>
+        <td class= 'align-middle'><%= link_to 'Voir', team, :class => 'btn btn-success btn-sm' %> <%= link_to 'Editer', edit_team_path(team), :class => 'btn btn-success btn-sm' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'Ajouter une équipe', new_team_path, :class => 'btn btn-success btn-sm' %>

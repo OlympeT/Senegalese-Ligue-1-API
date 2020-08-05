@@ -1,0 +1,30 @@
+<% title "Résultat" %>
+<h1 class="title">Résultats</h1>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th>Domicile</th>
+      <th>Score</th>
+      <th>Extérieur</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= image_tag(game.home_team.logo.thumb.url) %> <a href="<%= team_path(game.home_team) %>"> <%= game.home_team.name %></a></td>
+        <td class= 'align-middle'><%= game.home_score %> - <%= game.away_score %></td>
+        <td><%= image_tag(game.away_team.logo.thumb.url) %> <a href="<%= team_path(game.away_team) %>" ><%= game.away_team.name %></a></td>
+        <td class= 'align-middle'><%= game.date %></td>
+        <td class= 'align-middle'><%= link_to 'Mettre a jour', edit_game_path(game), :class => 'btn btn-sm btn-success' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'Générez le calendrier', generate_calendar_path, :class => 'btn btn-sm btn-success' %>

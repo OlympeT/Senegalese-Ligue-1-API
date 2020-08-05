@@ -1,0 +1,30 @@
+<% title "Calendrier et Résultats" %>
+<h1 class="title">Calendrier et Résultats</h1>
+<div class="table-responsive">
+  <table class="table table-sm table-borderless">
+    <% if @jour_match %>
+<% @jour_match.each do |jour| %>
+      <thead class="thead-light">
+      <tr>
+        <th class="title2" colspan="3"> <%= l(jour, format: '%d %B %Y') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @games = Game.where(date: jour, championship_id: Championship.last.id) %>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= image_tag(game.home_team.logo.thumb.url) %> <a href="<%= team_path(game.home_team) %>"> <%= game.home_team.name %></a></td>
+          <td class= 'align-middle'><%= game.home_score %> - <%= game.away_score %> </td>
+          <td>
+            <p style="text-align: right"> <a href="<%= team_path(game.away_team) %>"><%= game.away_team.name %></a> <%= image_tag(game.away_team.logo.thumb.url) %></p>
+
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+
+
+<% end %>
+      <% end %>
+  </table>
+</div>

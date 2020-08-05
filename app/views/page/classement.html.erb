@@ -1,0 +1,25 @@
+<% title "Classement" %>
+<h1 class="title">Classement - Championnat <%- if @points %> <%= @points.first.championship.end_saison.year %> <%- end %></h1>
+
+
+<div class="table-responsive">
+  <table class="table table-sm table-borderless">
+    <thead class="thead-light">
+    <tr>
+      <th>Equipe</th>
+      <th>Points</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%- if @points %>
+    <% @points.each_with_index do |point,index| %>
+      <tr <% if index == 9 %> class="table-warning" <%- end %>>
+        <td><%= image_tag(point.team.logo.thumb.url) %> <a href="<%= team_path(point.team) %>"> <%= point.team.name %></a></td>
+        <td class= 'align-middle'><%= point.point %> </td>
+      </tr>
+    <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

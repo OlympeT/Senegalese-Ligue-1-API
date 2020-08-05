@@ -1,0 +1,35 @@
+<%= form_with(model: game, local: true,:html => {class: 'new-item'}) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-6">
+      <div class="field">
+        <%= image_tag(game.home_team.logo.thumb.url) %> <%= game.home_team.name %>
+      </div>
+      <div class="form-group">
+        <%= form.number_field :home_score, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="field">
+        <%= image_tag(game.away_team.logo.thumb.url) %> <%= game.away_team.name %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :away_score, :class => 'form-control' %>
+      </div>
+
+    </div>
+  </div>
+
+  <%= form.submit 'Valider', :class =>'btn-block btn-success btn' %>
+<% end %>

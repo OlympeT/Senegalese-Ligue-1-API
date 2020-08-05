@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Beginning:</strong>
+  <%= @championship.beginning %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @championship.end_saison %>
+</p>
+
+<%= link_to 'Edit', edit_championship_path(@championship) %> |
+<%= link_to 'Back', championships_path %>

@@ -1,0 +1,7 @@
+{
+  "name": "ffoot",
+  "private": true,
+  "dependencies": {
+    "gijgo": "^1.9.10"
+  }
+}
